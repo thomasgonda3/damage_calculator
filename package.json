@@ -1,0 +1,44 @@
+{
+  "name": "itos-damage-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "description": "custom pokemon damage calculator",
+  "license": "MIT",
+  "author": "Thomas Gonda",
+  "scripts": {
+    "build": "parcel build src/client/index.html",
+    "client": "parcel serve src/client/index.html --open",
+    "fix": "npm run lint -- --fix",
+    "lint": "eslint --ext .js,.jsx, .",
+    "start": "node src/api.js"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": "eslint"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "eslint": ">=6.2.2",
+    "eslint-config-standard-kit": ">=0.14.4",
+    "eslint-plugin-import": ">=2.18.0",
+    "eslint-plugin-node": ">=9.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-promise": ">=4.2.1",
+    "eslint-plugin-react": ">=7.14.2",
+    "eslint-plugin-simple-import-sort": ">=4.0.0",
+    "eslint-plugin-standard": ">=4.0.0",
+    "parcel": "^2.0.0-beta.3.1",
+    "prettier": "^1.0.0",
+    "react": ">= 16.3.0",
+    "react-dom": "^16.0.0 || ^15.5.4"
+  },
+  "dependencies": {
+    "@smogon/calc": "^0.6.0",
+    "bootstrap": "^5.0.1",
+    "brain.js": "^2.0.0-beta.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "yarn": "^1.22.10"
+  }
+}
