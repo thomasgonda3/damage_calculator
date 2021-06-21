@@ -5,6 +5,7 @@
 /lib/
 /config.json
 /twitterex.txt
+.parcel-cache
 
 # Package managers:
 node_modules/

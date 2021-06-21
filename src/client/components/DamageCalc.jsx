@@ -38,7 +38,6 @@ class DamageCalc extends Component {
 
   render() {
     const { pokemon1, pokemon2 } = this.props
-    console.log('dmgcalctop', pokemon1)
     const p1Name =
       typeof pokemon1.species === 'string'
         ? pokemon1.species
@@ -87,7 +86,6 @@ class DamageCalc extends Component {
       }
       return calculate(gen, p1, p2, move)
     })
-    console.log(pokemon1Moves)
     const pokemon1MovesHTML = pokemon1Moves.map((move, index) => {
       if (move.damage === 0) move.damage = [0, 0]
       const backgroundColor = index % 2 === 0 ? '#bebebe' : 'white'
@@ -95,11 +93,6 @@ class DamageCalc extends Component {
         this.state.playersMove === 1 && this.state.moveIndex === index
           ? 'bold'
           : 'normal'
-      // onMouseEnter={e => (e.target.style.backgroundColor = '#f1f4f9')}
-      // onMouseLeave={e =>
-      //   (e.target.style.backgroundColor =
-      //     index % 2 === 0 ? '#bebebe' : 'white')
-      // }
       return (
         <li
           key={index}

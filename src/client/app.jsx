@@ -1,6 +1,6 @@
 import './app.css'
 
-import { Generations, Pokemon } from '@smogon/calc'
+import { Field, Generations, Pokemon } from '@smogon/calc'
 import React, { Component } from 'react'
 
 import DamageCalc from './components/DamageCalc'
@@ -20,53 +20,9 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      battleType: 'singles',
-      allEffects: {
-        terrain: 'none',
-        weather: 'none',
-        auraBreak: false,
-        fairyAura: false,
-        darkAura: false,
-        gravity: false
-      },
-      p1Effects: {
-        protect: false,
-        stealthRock: false,
-        spikes: 0,
-        reflect: false,
-        lightScreen: false,
-        auroraVeil: false,
-        foresight: false,
-        helpingHand: false,
-        battery: false,
-        friendGuard: false,
-        tailWind: false
-      },
-      p2Effects: {
-        protect: false,
-        stealthRock: false,
-        spikes: 0,
-        reflect: false,
-        lightScreen: false,
-        auroraVeil: false,
-        foresight: false,
-        helpingHand: false,
-        battery: false,
-        friendGuard: false,
-        tailWind: false
-      },
-      pokemon1: new Pokemon(gen, 'Abomasnow', {
-        item: 'Life Orb',
-        nature: 'Modest',
-        evs: { spa: 252 },
-        boosts: { spa: 1 }
-      }),
-      pokemon2: new Pokemon(gen, 'Abomasnow', {
-        item: 'Leftovers',
-        nature: 'Adamant',
-        evs: { spa: 252 },
-        boosts: { spa: 1 }
-      })
+      field: new Field(),
+      pokemon1: new Pokemon(gen, 'Abomasnow'),
+      pokemon2: new Pokemon(gen, 'Abomasnow')
     }
   }
 
@@ -75,12 +31,10 @@ class App extends Component {
   }
 
   handleChange(state) {
-    console.log('going off', state)
     this.setState({ ...this.state, ...state })
   }
 
   render() {
-    console.log('main', this.state.pokemon1)
     return (
       <div style={{ width: '75em' }}>
         <div
@@ -103,7 +57,7 @@ class App extends Component {
             stateName="pokemon1"
             handlePokemonChange={this.handleChange.bind(this)}
           />
-          <FieldInfo />
+          <FieldInfo handleFieldChange={this.handleChange.bind(this)} />
           <PokemonInfo
             label="Pokémon 2"
             stateName="pokemon2"
