@@ -48,6 +48,7 @@ class App extends Component {
           Ito's Pokémon Damage Calculator
         </div>
         <DamageCalc
+          field={this.state.field}
           pokemon1={this.state.pokemon1}
           pokemon2={this.state.pokemon2}
         />

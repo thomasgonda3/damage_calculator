@@ -17,8 +17,7 @@ const activeStyle = {
   fontWeight: 'bold'
 }
 
-const testField = new Field()
-console.log(testField)
+const field = new Field()
 
 const terrains = ['None', 'Electric', 'Grassy', 'Psychic', 'Misty']
 const weather = [
@@ -58,14 +57,13 @@ class FieldInfo extends Component {
   async componentDidMount() {}
 
   handleChange(state) {
-    console.log('goes off', state)
     const newState = { ...this.state, ...state }
+    Object.setPrototypeOf(newState, field)
     this.setState(newState)
     this.props.handleFieldChange({ field: newState })
   }
 
   render() {
-    console.log(this.state)
     const terrainButtons = terrains.map((terrain, index) => {
       const currStyle =
         this.state.terrain === terrain ||

@@ -1,23 +1,7 @@
-import { calculate, Generations, Pokemon } from '@smogon/calc'
+import { calculate, Field, Generations, Pokemon } from '@smogon/calc'
 import React, { Component } from 'react'
 
-export const body = {
-  margin: 0,
-  padding: 0,
-  height: '100%'
-}
-
-export const row = {
-  width: '100%',
-  height: '100%',
-  display: 'table',
-  tableLayout: 'fixed'
-}
-
-export const column = {
-  minHeight: '100%',
-  display: 'table-cell'
-}
+const field = new Field()
 
 const gen = Generations.get(8)
 
@@ -84,7 +68,7 @@ class DamageCalc extends Component {
         type: move.type,
         category: move.category
       }
-      return calculate(gen, p1, p2, move)
+      return calculate(gen, p1, p2, move, this.props.field)
     })
     const pokemon1MovesHTML = pokemon1Moves.map((move, index) => {
       if (move.damage === 0) move.damage = [0, 0]
@@ -127,8 +111,14 @@ class DamageCalc extends Component {
       )
     })
 
+    const reverseField = {
+      ...this.props.field,
+      defenderSide: { ...this.props.field.attackerSide },
+      attackerSide: { ...this.props.field.defenderSide }
+    }
+    Object.setPrototypeOf(reverseField, field)
     const pokemon2Moves = pokemon2.moves.map(move =>
-      calculate(gen, p2, p1, move)
+      calculate(gen, p2, p1, move, reverseField)
     )
     const pokemon2MovesHTML = pokemon2Moves.map((move, index) => {
       if (move.damage === 0) move.damage = [0, 0]

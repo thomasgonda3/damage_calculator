@@ -91,7 +91,6 @@ export const calcStat = (base, ev, iv, level, statName, nature) => {
 }
 
 const checkInput = (input, min, max) => {
-  console.log(input, min, max)
   if (isNaN(input) || input <= min) return min
   if (input >= max) return max
   return input
@@ -257,7 +256,6 @@ class PokemonInfo extends Component {
     newPoke.weight = realPoke.species.weightkg
     newPoke.type1 = realPoke.types[0]
     newPoke.type2 = realPoke.types.length > 1 ? realPoke.types[1] : ''
-    console.log(newPoke)
 
     this.setState({ ...newPoke })
     this.props.handlePokemonChange({ [this.props.stateName]: newPoke })
@@ -286,7 +284,6 @@ class PokemonInfo extends Component {
   }
 
   render() {
-    // console.log('checking pokemon', this.state)
     const hp = calcHP(
       +this.state.base.hp,
       +this.state.evs.hp,
